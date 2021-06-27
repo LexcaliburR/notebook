@@ -72,6 +72,15 @@ $$ y=\mathcal F(x,\{W_i\}) + W_sx $$
 <img src="./img/resnet_3.png" width="100%" height="100%">
 
 
+实现时有如下几个关键点需要注意：
+- 原文使用relu激活函数
+- 除了第一组外，通过把每一组的第一个block的第一层的卷积层的stride设为2实现下采样（问题：每个block的输入（W，H，C），第一组要下采样时，该blcok的输出为（W/2， H/2， C）， 怎么匹配的？？？？？）
+- 结果证明在BottleNeck是的3x3卷积处进行降采样效果比较好，采用了这个tricks的ResNet又称ResNetV1.5【4】
+- BasicBlock和BottelNeck最后一层均是先与输出相加，然后再通过激活函数
+- BottleNeck中，为了匹配通道数，使用1x1卷积
+- 在每个卷积后，激活前使用Batch normalization
+
+
 ---
 
 
@@ -83,9 +92,11 @@ $$ y=\mathcal F(x,\{W_i\}) + W_sx $$
 ---
  
 
-# 文献
+# 文献与其他参考
 【1】 K. He and J. Sun. Convolutional neural networks at constrained time cost. In CVPR, 2015. <br>
-【2】 R. K. Srivastava, K. Greff, and J. Schmidhuber. Highway networks. arXiv:1505.00387, 2015.
+【2】 R. K. Srivastava, K. Greff, and J. Schmidhuber. Highway networks. arXiv:1505.00387, 2015. <br>
+【3】 torchvison.resnet <br>
+【4】 https://ngc.nvidia.com/catalog/model-scripts/nvidia:resnet_50_v1_5_for_pytorch
 
 
 # 结束语
