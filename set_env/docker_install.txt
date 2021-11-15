@@ -1,0 +1,15 @@
+sudo apt-get install nvidia-container-toolkit
+sudo apt-get install nvidia-container-runtime
+
+# 修改docker使用要加sudo
+cat /etc/group | grep docker
+如果打印出东西，跳过这一步
+sudo groupadd docker
+添加用户到docker分组
+sudo usermod -aG docker [username]
+# 查看是否生效
+cat /etc/group
+# 重启docker
+sudo systemctl restart docker
+# 给docker.sock添加权限
+sudo chmod a+rw /var/run/docker.sock
