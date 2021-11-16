@@ -1,3 +1,7 @@
+<!--
+ * @Author: lishiqi
+ * @LastEditors: lishiqi
+-->
 # 一.cuda 程序代码流程
 ## 1. 分配需要的cpu内存空间
 T* A = (T*)malloc(size)
@@ -19,12 +23,18 @@ cudaFree(cu_A)
 threadsPerBlock(N)  
 thread id 和 block的size一一对应
 
-## 1.threadsPerBlock 为2维时
+## 2.threadsPerBlock 为2维时
 threadsPerBlock的size为(Dx, Dy)  
 下标为(x, y)的threadid为  
 thread_id = x + y * Dx
 
-## 1.threadsPerBlock 为3维时
+## 3.threadsPerBlock 为3维时
 threadsPerBlock的size为(Dx, Dy, Dz)  
 下标为(x,y,z)的thread_id为  
 thread_id = x + y * Dx + z * Dx * Dy
+
+# 三. shared memory
+声明固定尺寸的共享的数组  
+__shared__ float sh_data[THREAD_SIZE];  
+声明动态尺寸的共享的数组  
+extern __shared__ float sh_data[];
