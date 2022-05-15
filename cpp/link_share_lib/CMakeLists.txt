@@ -23,7 +23,9 @@ target_include_directories(b
 
 target_link_libraries(b
     PUBLIC
-    ${PROJECT_SOURCE_DIR}/lib/liba.so
+    -Wl,-dn
+    ${PROJECT_SOURCE_DIR}/lib/liba.a
+    -Wl,-dy
 )
 
 add_library(c SHARED
