@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.5)
+project(hello)
+
+if(${FULL_BUILD})
+message("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+message("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+message("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+message("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+message("!!!!!!!${FULL_BUILD}!!!!!!!!")
+message("!!!!!!!FULL_BUILD!!!!!!!!")
+else()
+message("++++++++++++++++++++++++++++")
+message("++++++++++++++++++++++++++++")
+message("++++++++++++++++++++++++++++")
+message("++++++++++++++++++++++++++++")
+message("++++++++++++++++++++++++++++")
+message("+++++++${FULL_BUILD}++++++++")
+message("+++++++FULL_BUILD+++++++++")
+endif()
+
+
+add_executable(hello main.cpp)
